@@ -1,0 +1,32 @@
+
+<form [formGroup]="noteForm">
+  <div class="modal-header">
+    <h2 mat-dialog-title>Add a note</h2>
+  </div>
+  <mat-dialog-content>
+      <mat-form-field class="note-full-width">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title" maxlength="24">
+        <mat-error>Title is required</mat-error>
+        <mat-hint>Max 24 Characters</mat-hint>
+      </mat-form-field>
+      <mat-form-field class="note-full-width" appearance="outline">
+        <mat-label>Content</mat-label>
+        <textarea matInput rows="8" placeholder="Type here" maxlength="200" formControlName="content"></textarea>
+        <mat-error>Content is required</mat-error>
+        <mat-hint>Max 200 Characters:  {{contentLength}}/200</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <mat-select formControlName="color" [compareWith]="compareColorStrings">
+          <mat-option [value]="important" [style.color]="important">Important</mat-option>
+          <mat-option [value]="social" [style.color]="social">Social</mat-option>
+          <mat-option [value]="business" [style.color]="business">Business</mat-option>
+        </mat-select>
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button type="submit" color="primary" (click)="submitNote()"  [disabled]="this.noteForm.invalid">{{note ? 'Edit' : 'Add'}}</button>
+  </mat-dialog-actions>
+</form>

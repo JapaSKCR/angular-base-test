@@ -1,0 +1,72 @@
+@import '../../../sass/references';
+@import '../../../sass/placeholders';
+
+
+.grid-container {
+  margin: 20px;
+}
+
+  .sort-btn {
+    @extend %df-aic-jcfe;
+    margin-right: 10px;
+  }
+
+  .turn {
+    transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+  }
+
+.note-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 15px;
+  border-left: 10px solid;
+  word-break: break-all;
+  &-title {
+    font-size: 22px;
+  }
+
+  &-content {
+    padding-top: 10px;
+    font-size: 16px;
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+  }
+
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.note-form {
+  width: 100%;
+}
+
+.note-full-width {
+  max-width: 500px;
+  width: 100%;
+}
+
+.btn-create {
+  position: fixed;
+  z-index: 2;
+  bottom: 80px;
+  right: 35px;
+  color: $color-3;
+  border-radius: 30px;
+  transition: all 0.25s ease-in-out;
+}
+

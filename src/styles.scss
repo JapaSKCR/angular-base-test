@@ -1,4 +1,20 @@
 @import 'sass/theme';
+@import 'sass/placeholders.scss';
+@import 'sass/references';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snackbar-success {
+  background-color:  $success;
+  button {
+    color: $color-1;
+  }
+}
+
+.snackbar-error {
+  background-color: $danger;
+  button {
+    color: $color-1;
+  }
+}

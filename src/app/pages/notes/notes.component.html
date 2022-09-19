@@ -1,0 +1,47 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Notes</h1>
+    <form [formGroup]="noteForm" class="note-form">
+      <mat-form-field class="note-full-width" appearance="outline">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input type="text" matInput placeholder="Title or content" formControlName="search">
+      </mat-form-field>
+    </form>
+    <div class="sort-btn">
+      <button mat-raised-button color="warn" class="sort-btn" aria-label="sort button" (click)="sortNotes()">
+        {{isAscending ? 'Sort Z-A' : 'Sort A-Z'}}
+        <mat-icon [ngClass]="{'turn': isAscending }">sort</mat-icon>
+      </button>
+    </div>
+  <mat-grid-list [cols]="colSpan" rowHeight="260px">
+    <mat-grid-tile *ngFor="let note of noteResult">
+      <mat-card class="note-card" [ngStyle]="{'border-left-color': note.color ? note.color : 'rgba(82, 95, 127, .5)'}">
+        <mat-card-header>
+          <mat-card-title class="note-card-title">
+              {{note.title}}
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu" matTooltip="Edit notes" matTooltipPosition="left">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item (click)="openNoteDialog(note)">Update
+                    <mat-icon>edit_square</mat-icon>
+                  </button>
+                  <button mat-menu-item (click)="openDeleteDialog(note)">Remove
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+              </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="note-card-content">
+          <p>{{note.content}}</p>
+        </mat-card-content>
+        <mat-card-footer class="note-card-footer">{{formatDate(note.createdAt)}}</mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<button mat-fab class="btn-create" (click)="openNoteDialog()" matTooltip="add a new note" matTooltipPosition="left">
+  <mat-icon>add</mat-icon>
+</button>
+
+

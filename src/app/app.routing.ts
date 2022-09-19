@@ -20,6 +20,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'notes',
+    loadChildren: () => import('./pages/notes/notes.module').then(m => m.NotesModule),
+    canActivate: [FeatureFlagGuard],
+    data: {
+      featureFlag: 'notes'
+    }
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'

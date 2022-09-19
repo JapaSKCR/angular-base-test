@@ -1,7 +1,8 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AvatarModule } from './common/components/avatar/avatar.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
@@ -16,10 +17,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerInterceptor } from './common/interceptors/spinner.interceptor';
+import { SpinnerComponent } from './common/components/spinner/spinner.component';
+import { DeleteConfirmationComponent } from './common/components/dialog/delete-confirmation/delete-confirmation.component';
 
 export const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {};
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, SpinnerComponent ],
   imports: [
     BrowserModule,
     AppRouting,
@@ -40,9 +45,11 @@ export const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     AvatarModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,7 +22,7 @@ export class ViewStateService {
 
     eventManager.addGlobalEventListener('window', 'resize', () => {
       clearTimeout(timeoutHandler);
-      timeoutHandler = setTimeout(this.defineSizes.bind(this), 100);
+      timeoutHandler = setTimeout(this.defineSizes.bind(this), 50);
     });
 
     this.defineSizes();

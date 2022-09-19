@@ -10,12 +10,13 @@
       "supported": ["pt-br", "en-us"]
     },
     "logo": {
-      "forMenu": "http://placehold.it/200x140",
-      "forHeader": "http://placehold.it/100x50"
+      "forMenu": "https://placedog.net/200/140",
+      "forHeader": "https://placedog.net/100/50"
     }
   },
   "featureFlags": {
     "home": true,
-    "about": true
+    "about": true,
+    "notes": true
   }
 }

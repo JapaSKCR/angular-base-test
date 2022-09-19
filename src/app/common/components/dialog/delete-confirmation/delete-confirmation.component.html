@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete note</h1>
+<mat-dialog-content>
+  Would you like to delete {{note.title}}?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="handleNoOpt()">No</button>
+  <button mat-raised-button color="primary" (click)="handleYesOpt()">Yes</button>
+</mat-dialog-actions>

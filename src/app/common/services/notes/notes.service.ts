@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { environment } from './../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Note } from '../../models/note/note.model';
 
@@ -12,20 +13,24 @@ export class NotesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAllNotes() {
+  public getAllNotes(): Observable<Note[]> {
     return this.httpClient.get<Note[]>(this.NOTES_URL);
   }
-  public createNote() {
-    return ''
+
+  public createNote(note: Note): Observable<Note> {
+    return this.httpClient.post<Note>(this.NOTES_URL, note);
   }
-  public updateNote() {
-    return ''
+
+  public updateNote(note: Note): Observable<Note> {
+    return this.httpClient.put<Note>(`${this.NOTES_URL}/${note.id}`, note);
   }
-  public deleteNote() {
-    return ''
+
+  public deleteNote(noteId: number): Observable<Note> {
+    return this.httpClient.delete<Note>(`${this.NOTES_URL}/${noteId}`);
   }
-  public getNote() {
-    return ''
+
+  public getNoteById(noteId: number): Observable<Note> {
+    return this.httpClient.get<Note>(`${this.NOTES_URL}/${noteId}`);
   }
 
 }

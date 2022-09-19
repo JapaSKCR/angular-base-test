@@ -1,0 +1,16 @@
+
+@import '../../../../../sass/references';
+@import '../../../../../sass/placeholders';
+
+.note-full-width {
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+textarea {
+  resize: none;
+}
+
+.mat-dialog-actions {
+  @extend %df-aic-jcfe;
+}

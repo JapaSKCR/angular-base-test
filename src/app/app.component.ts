@@ -8,7 +8,7 @@ import { environment } from './../environments/environment';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private userAgent: UserAgentService,
     private pubsub: PubsubService,
     private cdr: ChangeDetectorRef,
-    private menuService: MenuService
+    private menuService: MenuService,
+
   ) {}
 
   ngOnInit() {
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.menuService
         .getMenus()
+        .pipe(tap((menu)=> console.log(menu)))
         .subscribe(menus => this.menus = menus)
     );
   }

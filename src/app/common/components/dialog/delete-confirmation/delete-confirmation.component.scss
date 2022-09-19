@@ -1,0 +1,6 @@
+@import '../../../../../sass/references';
+@import '../../../../../sass/placeholders';
+
+.mat-dialog-actions {
+  @extend %df-aic-jcfe;
+}
